@@ -1,5 +1,5 @@
 {
-  "name": "@gianluca/csv-io",
+  "name": "@gianlucafiore/csv-io",
   "version": "0.1.0",
   "description": "CSV export user view",
   "main": "index.js",
