@@ -19,7 +19,7 @@ const {
   domReady,
   i,
   hr,
-  text_attr,
+  text_attr, 
   button,
 } = require("@saltcorn/markup/tags");
 const {
@@ -80,7 +80,91 @@ const configuration_workflow = (req) =>
           });
         },
       },
+      {
+        name: 'Style Button',
+        form: async cntx =>{
+          return new Form({
+            fields: [
+              {
+                name: "statistic",
+                label: "Statistic",
+                type: "String",
+                required: true,
+                attributes: {
+                  options: statOptions,
+                },
+              },
+              {
+                name: "field",
+                label: "field",
+                type: "String",
+                required: true,
+                attributes: {
+                  options: fieldOptions
+                },
+              },
+              {
+                name: "value_fml",
+                label: ("Value Formula"),
+                class: "validate-expression",
+                type: "String",
+                required: false,
+                showIf: { field: "Formula" }
+              },
+              {
+                name: "where_fml",
+                label: ("Where"),
+                sublabel: ("Formula"),
+                class: "validate-expression",
+                type: "String",
+                required: false,
+              },
+              {
+                name: "decimal_places",
+                label: "Decimal places",
+                type: "Integer",
+                required: false,
+              },
+              {
+                name: "text_style",
+                label: "Text Style",
+                type: "String",
+                required: true,
+                attributes: {
+                  options: [
+                    { label: "Normal", name: "" },
+                    { label: "Heading 1", name: "h1" },
+                    { label: "Heading 2", name: "h2" },
+                    { label: "Heading 3", name: "h3" },
+                    { label: "Heading 4", name: "h4" },
+                    { label: "Heading 5", name: "h5" },
+                    { label: "Heading 6", name: "h6" },
+                    { label: "Bold", name: "font-weight-bold" },
+                    { label: "Italics", name: "font-italic" },
+                    { label: "Small", name: "small" },
+                  ],
+                },
+              },
+              {
+                name: "pre_text",
+                label: "Text before",
+                sublabel: "For example: currency symbol",
+                type: "String",
+                required: false,
+              },
+              {
+                name: "post_text",
+                label: "Text after",
+                sublabel: "For example: units",
+                type: "String",
+                required: false,
+              },
+            ],
+          });
+        }
+      }
     ],
+    
   });
 
 const get_state_fields = async (table_id, viewname, { show_view }) => {
